@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">{{ menu.title }}</h2>
+    <p>{{ menu.description }}</p>
+    <p class="fw-bold">Price: ${{ menu.price }}</p>
+    <!-- Add more details as needed -->
+
+    <!-- Example: Displaying menu ingredients -->
+    {% if menu.ingredients.all %}
+      <h4 class="mt-4">Ingredients:</h4>
+      <ul class="list-group">
+        {% for ingredient in menu.ingredients.all %}
+          <li class="list-group-item">{{ ingredient.name }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+{% endblock %}

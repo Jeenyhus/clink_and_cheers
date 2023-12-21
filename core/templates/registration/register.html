@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-md-6">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <form method="post" action="{% url 'register' %}" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="mb-3">
+                              {{ form.first_name.label_tag }}
+                              {{ form.first_name }}
+                              {% if form.first_name.errors %}
+                                  <div class="invalid-feedback">
+                                      {{ form.first_name.errors.0 }}
+                                  </div>
+                              {% endif %}
+                          </div>
+                          <div class="mb-3">
+                              {{ form.last_name.label_tag }}
+                              {{ form.last_name }}
+                              {% if form.last_name.errors %}
+                                  <div class="invalid-feedback">
+                                      {{ form.last_name.errors.0 }}
+                                  </div>
+                              {% endif %}
+                          </div>
+                            <div class="mb-3">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                                {% if form.username.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.username.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.email.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                              {{ form.location.label_tag }}
+                              {{ form.location }}
+                              {% if form.location.errors %}
+                                  <div class="invalid-feedback">
+                                      {{ form.location.errors.0 }}
+                                  </div>
+                              {% endif %}
+                          </div>
+                            <div class="mb-3">
+                                {{ form.password1.label_tag }}
+                                {{ form.password1 }}
+                                {% if form.password1.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.password1.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                {{ form.password2.label_tag }}
+                                {{ form.password2 }}
+                                {% if form.password2.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ form.password2.errors.0 }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

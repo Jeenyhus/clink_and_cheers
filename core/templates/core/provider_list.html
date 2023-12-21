@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-3xl font-semibold mb-4">Available Providers</h2>
+
+    <!-- Search Form -->
+    <form method="get" class="mb-4">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search providers...">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+
+    <!-- Provider List -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      {% for provider in providers %}
+        <div class="col mb-4">
+          <div class="card h-100 border-0 shadow-md transition duration-300 transform hover:scale-105 rounded">
+            <img src="{% if provider.profile_picture %}{{ provider.profile_picture.url }}{% else %}https://via.placeholder.com/300{% endif %}" alt="{{ provider.name }}" class="card-img-top h-40 object-cover rounded-t">
+            <div class="card-body">
+              <h5 class="card-title text-primary">{{ provider.name }}</h5>
+              <p class="card-text text-muted">{{ provider.experience }} years of experience</p>
+              <p class="card-text text-muted">Ratings: {{ provider.ratings }}</p>
+              <p class="card-text">{{ provider.services_offered }}</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <a href="{% url 'provider_detail' provider.id %}" class="btn btn-primary btn-sm">View Profile</a>
+                <a href="{% url 'book_provider' provider.id %}" class="btn btn-success btn-sm">Book Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div class="mt-4">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          {% for page in providers.paginator.page_range %}
+            <li class="page-item {% if providers.number == page %}active{% endif %}">
+              <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endblock %}

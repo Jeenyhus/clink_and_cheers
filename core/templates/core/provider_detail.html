@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">{{ provider.name }}</h2>
+        <p class="card-text">{{ provider.bio }}</p>
+        <p class="card-text"><strong>Skills:</strong> {{ provider.skills }}</p>
+        <p class="card-text"><strong>Experience:</strong> {{ provider.experience }} years</p>
+        <!-- Add more details as needed -->
+
+        <a href="{% url 'book_provider' provider.id %}" class="btn btn-primary">Book {{ provider.name }}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

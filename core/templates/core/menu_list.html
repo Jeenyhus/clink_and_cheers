@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mx-auto my-8">
+    <h2 class="text-3xl font-semibold mb-4">Available Menus</h2>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {% for menu in menus %}
+        <li class="bg-white rounded-lg overflow-hidden shadow-md p-4 transition duration-300 transform hover:scale-105">
+          <img src="{% if menu.image %}{{ menu.image.url }}{% else %}https://via.placeholder.com/300{% endif %}" alt="{{ menu.title }}" class="w-full h-40 object-cover rounded-t-lg mb-4">
+          <a href="{% url 'menu_detail' menu.id %}" class="text-xl font-semibold text-blue-500 hover:underline">{{ menu.title }}</a>
+          <p class="text-gray-600">${{ menu.price }}</p>
+          <div class="mt-2">
+            <a href="{% url 'menu_detail' menu.id %}" class="text-blue-500 hover:underline">View Details</a>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
